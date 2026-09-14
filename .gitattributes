@@ -9,3 +9,7 @@ CLAUDE.md text eol=lf
 docs/** text eol=lf
 .agents/** text eol=lf
 .harness-core/** text eol=lf
+
+# Vendored upstream source: keep bytes identical to upstream on every platform.
+# repository-harness/.gitattributes still pins *.ps1 to CRLF.
+repository-harness/** text eol=lf
