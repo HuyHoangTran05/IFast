@@ -1,0 +1,88 @@
+:root {
+  --bg: #f7f9fc;
+  --fg: #111827;
+  --bg-inverse: #10213f;
+  --fg-inverse: #ffffff;
+  --surface: #ffffff;
+  --border: #d5deeb;
+  --brand: #0b5fff;
+  --brand-fg: #ffffff;
+  --accent: #8a5a00;
+  --warning: #8a4b00;
+  --warning-bg: #fff4d6;
+  --danger: #b42318;
+  --muted-fg: #52616b;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+
+  --radius-sm: 8px;
+  --radius-lg: 16px;
+  --content-max: 1200px;
+  --touch-target: 44px;
+  --shadow-card: 0 8px 24px rgb(17 24 39 / 8%);
+  --shadow-overlay: 0 16px 40px rgb(17 24 39 / 18%);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--bg);
+}
+
+body {
+  min-width: 360px;
+  margin: 0;
+  color: var(--fg);
+  background: var(--bg);
+  font-family: "Inter Variable", Inter, ui-sans-serif, system-ui, sans-serif;
+  font-synthesis: none;
+  line-height: 1.5;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+:focus-visible {
+  outline: 3px solid var(--brand);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+.site-shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}

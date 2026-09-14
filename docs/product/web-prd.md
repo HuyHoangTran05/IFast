@@ -217,17 +217,30 @@ Stack giữ nguyên theo quyết định P1: Next.js + TypeScript, type sinh t�
 
 | # | Câu hỏi | Chặn phần nào | Ai quyết |
 | --- | --- | --- | --- |
-| Q1 | Nguồn ảnh và nội dung marketing cho trang chủ và chi tiết xe là gì? | F-01, F-03, toàn bộ P2 visual | Sản phẩm |
 | Q2 | Nguồn nội dung cho tin tức và trang chính sách: CMS nào, hay Markdown trong repo? | P4 | Sản phẩm + R4a |
 | Q3 | Dữ liệu đại lý và trạm sạc lấy từ đâu, nhà cung cấp bản đồ nào? | F-20 | R2b + R4a |
-| Q4 | Tiền cọc là số cố định hay theo phần trăm giá xe, chính sách hoàn cọc? | F-11, F-12 | Sản phẩm + pháp lý |
-| Q5 | Có yêu cầu đăng nhập mới được đặt cọc không? | F-10, F-14, F-16 | Sản phẩm |
 | Q6 | Khi nào thay biểu phí mẫu bằng biểu phí pháp lý? | F-07 và điều kiện lên production | Sản phẩm + R2a |
 
 Không được chọn mặc định thay cho các câu hỏi này trong lúc viết code. Mặc định
 cấu hình được không phải là authority.
 
-## 10. Điều kiện hoàn tất P2
+## 10. Quyết định đã chốt cho P2
+
+- **Q1 — Nhận diện và asset tạm thời (2026-09-14):** dùng visual system riêng
+  của IFast với màu chính `#0B5FFF`, font Inter và icon Lucide. Cho phép dùng
+  placeholder trung tính cho logo, ảnh xe và nội dung marketing. Không lấy logo,
+  ảnh, asset, nội dung hay nhận diện từ VinFast; chỉ tham chiếu cách tổ chức
+  layout, spacing và component của website ô tô hiện đại.
+- **Q4 — Chính sách cọc tạm thời (2026-09-14):** chính sách kinh doanh chưa
+  chốt. P2 không hard-code số tiền cọc hoặc điều kiện hoàn cọc; UI phải sẵn
+  sàng nhận `deposit_amount`, `deposit_type`, `refundable` và `refund_terms`
+  từ backend. Bất kỳ mock/config nào dùng trước khi backend cung cấp contract
+  đều phải có cờ và nhãn dữ liệu mẫu rõ ràng.
+- **Q5 — Đặt cọc không cần đăng nhập ở P2 (2026-09-14):** khách có thể đặt cọc
+  với thông tin được thu trong luồng ordering/deposit; không dựng xác thực trong
+  P2. Đăng nhập vẫn là phạm vi P3.
+
+## 11. Điều kiện hoàn tất P2
 
 P2 xong khi: mọi yêu cầu F-01 đến F-14 đạt tiêu chí chấp nhận; N-01 đến N-09 có
 chứng cứ đo được; E2E luồng đặt cọc xanh trong CI; và bảng sitemap đã được một

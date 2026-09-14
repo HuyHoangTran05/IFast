@@ -72,8 +72,8 @@ Modules hay thư viện, và ghi quyết định vào mục Decisions của file
 *Proof:* `npm run typecheck && npm run build` xanh; kiểm tương phản màu đạt AA.
 
 **4. Trang chủ và làm lại `/xe`.** Theo IA đã xác minh ở bước 2. F-01, F-02.
-*Chặn bởi Q1* — nếu chưa có nguồn ảnh và nội dung marketing thì dựng bố cục với
-chỗ trống có kích thước đúng, không nhét ảnh mượn.
+Chưa có asset và nội dung marketing chính thức, nên dùng placeholder trung tính
+có kích thước đúng; không nhét ảnh mượn.
 *Proof:* URL đã lọc dán sang tab mới ra đúng kết quả; số thẻ khớp số dòng xe API.
 
 **5. Cấu hình và chi phí.** `/xe/[code]/cau-hinh` và `/xe/[code]/chi-phi`.
@@ -83,8 +83,9 @@ con số API trả về; đổi mốc thời gian thì lệ phí trước bạ �
 đúng các con số đã ghi trong mục Validation của P1.
 
 **6. Đặt cọc và tra cứu đơn.** F-10..F-14.
-*Chặn bởi Q4 và Q5* — chính sách tiền cọc và việc có bắt đăng nhập hay không.
-Không tự chọn mặc định; dừng và hỏi.
+P2 cho phép đặt cọc không cần đăng nhập. Chính sách cọc là mock/config có nhãn
+dữ liệu mẫu, sẵn sàng nhận contract backend; không hard-code thành chính sách
+kinh doanh.
 *Proof:* gửi trùng không tạo đơn thứ hai; lỗi server hiện đúng trường.
 
 **7. E2E trong `tests/e2e/`.** Việc số 3 của P1. Kịch bản bắt buộc: đặt đơn →
@@ -101,11 +102,12 @@ trước vì đụng vào CI.
 - **Bước 1 có thể lộ ra contract đúng trên giấy nhưng sai khi chạy.** Đó chính
   là lý do nó đứng đầu. Nếu lệch: sinh lại type bằng `npm run gen:api` và chạy
   `python scripts/generate-contract.py --check` để xác định bên nào lệch.
-- **Q1 chặn phần lớn công việc thị giác.** Giảm thiểu: bước 3, 5, 6, 7 không phụ
-  thuộc Q1, nên vẫn chạy được song song trong khi chờ. Chỉ bước 4 phải chờ.
-- **Q4 và Q5 chặn bước 6.** Đây là stop condition thật, không phải rủi ro mềm:
-  tiền cọc và điều kiện đăng nhập là chính sách quan sát được từ bên ngoài, mặc
-  định cấu hình được không phải authority. Dừng trước khi viết code trang đặt cọc.
+- **Asset và nội dung marketing chính thức chưa có.** P2 dùng placeholder trung
+  tính theo quyết định Q1; mỗi asset thật sau này phải có nguồn truy nguyên theo
+  decision 0002.
+- **Chính sách cọc kinh doanh chưa chốt.** P2 chỉ dùng mock/config có nhãn dữ
+  liệu mẫu và chờ contract backend; không biến mock thành chính sách quan sát
+  được từ bên ngoài.
 - **Dữ liệu biểu phí vẫn là dữ liệu mẫu.** Kế thừa rủi ro của P1. F-07 bắt giao
   diện phải hiện cảnh báo, nên rủi ro "ai đó tưởng là số thật" được chặn ở tầng
   giao diện, nhưng vẫn **phải thay trước khi lên production**.
@@ -118,17 +120,42 @@ trước vì đụng vào CI.
 
 ## Progress
 
-- [ ] 1. Chạy `web` và `api` cùng lúc, xác nhận một lời gọi API thật
-- [ ] 2. Đối chiếu sitemap bằng trình duyệt, cập nhật `web-sitemap.md`
-- [ ] 3. Token, `SiteHeader`, `SiteFooter`, ba trạng thái
-- [ ] 4. Trang chủ và `/xe` theo IA đã xác minh (chặn bởi Q1)
+- [x] 1. Chạy `web` và `api` cùng lúc, xác nhận một lời gọi API thật
+  - 2026-09-14: Dựng CPython 3.13.15 trong virtualenv cục bộ `py313`, nạp
+    SQLite mẫu rồi chạy API tại `127.0.0.1:8000`. Web tại `127.0.0.1:3000`
+    trả HTTP 200, có `VinFast VF 2`, và không có thông báo lỗi API; log API ghi
+    `GET /catalog/models` 200 từ lần render Web.
+  - Ghi chú môi trường cục bộ: Python 3.14/Mingw không cài được dependency có
+    wheel native. Windows Application Control chặn SWC native của Next.js;
+    phiên kiểm chứng dùng SWC WebAssembly và Webpack qua `npm.cmd run dev --
+    --webpack` với biến `NEXT_TEST_WASM`/`NEXT_TEST_WASM_DIR`. Đây là workaround
+    của máy hiện tại, không thay đổi cấu hình hay lệnh chuẩn của repo.
+- [x] 2. Đối chiếu sitemap bằng trình duyệt, cập nhật `web-sitemap.md`
+  - 2026-09-14: Người dùng đối chiếu thủ công homepage và link/CTA công khai
+    tới detail VF 2, showroom/trạm sạc, bảo hành và FAQ/hỗ trợ; không dùng
+    sitemap.xml, crawler hay tự động enumerate URL. Sitemap ghi nhận home là
+    discovery surface, detail long-form, funnel đặt cọc stateful, showroom và
+    hỗ trợ là destination riêng, cùng các giới hạn scope P2/P3/P4.
+- [x] 3. Token, `SiteHeader`, `SiteFooter`, ba trạng thái
+  - 2026-09-14: Thêm `globals.css` (token/reset/Inter), shell layout, header
+    responsive có menu xe nhận từ Server Component, footer tĩnh, và ba state có
+    thông báo cho screen reader. Style component dùng CSS Modules; không dùng
+    asset hoặc nội dung từ VinFast.
+  - `npm.cmd run typecheck` xanh. `npm.cmd run build -- --webpack` xanh với
+    SWC WebAssembly workaround đã ghi ở bước 1; Next.js báo route `/` và
+    `/xe/[code]` dynamic server-rendered.
+  - Kiểm tương phản AA bằng công thức WCAG: `fg/bg` 16.82:1,
+    `muted/surface` 6.40:1, `brand-fg/brand` 5.13:1, `inverse` 16.01:1,
+    `accent/surface` 5.93:1, `warning/warning-bg` 6.21:1.
+- [ ] 4. Trang chủ và `/xe` theo IA đã xác minh, dùng placeholder hợp lệ
 - [ ] 5. `/xe/[code]/cau-hinh` và `/xe/[code]/chi-phi`
-- [ ] 6. `/xe/[code]/dat-coc` và `/dat-coc/[maDon]` (chặn bởi Q4, Q5)
+- [ ] 6. `/xe/[code]/dat-coc` và `/dat-coc/[maDon]` (cần contract backend cho cọc)
 - [ ] 7. E2E luồng đặt cọc trong `tests/e2e/`
 - [ ] 8. Lighthouse CI và axe trong CI (cần R4a)
 
-Câu hỏi mở Q1..Q6 nằm trong [PRD mục 9](../../product/web-prd.md). Trả lời câu
-nào thì ghi câu trả lời vào PRD, không ghi vào đây.
+Câu hỏi mở Q2, Q3 và Q6 nằm trong [PRD mục 9](../../product/web-prd.md). Các
+quyết định Q1, Q4 và Q5 đã được ghi trong PRD mục 10; quyết định tương lai vẫn
+phải được ghi vào PRD, không chỉ ghi ở đây.
 
 ## Decisions
 
@@ -139,6 +166,22 @@ nào thì ghi câu trả lời vào PRD, không ghi vào đây.
 - 2026-09-14: **Xác minh IA bằng người, không bằng crawler.** Site tham chiếu
   chặn truy cập tự động và `robots.txt` từ chối dùng cho huấn luyện. Xem
   decision 0002.
+- 2026-09-14: **Visual system tạm thời của IFast.** Dùng `#0B5FFF`, Inter,
+  Lucide và placeholder trung tính; không sao chép asset hay nội dung từ site
+  tham chiếu. Authority chi tiết: PRD mục 10, Q1.
+- 2026-09-14: **Đặt cọc khách không cần đăng nhập ở P2.** Chính sách cọc chưa
+  chốt dùng mock/config có nhãn dữ liệu mẫu, chờ contract backend thay vì
+  hard-code. Authority chi tiết: PRD mục 10, Q4 và Q5.
+- 2026-09-14: **IA P2 được xác minh thủ công từ reference.** Giữ URL tiếng Việt
+  đã chốt của IFast; dùng reference để xác nhận discovery home, detail
+  long-form, funnel đặt cọc stateful, CTA và vai trò riêng của showroom/hỗ trợ.
+  Không suy ra sticky/mobile, không sao chép asset hay nội dung. Evidence ở
+  `docs/product/web-sitemap.md`.
+- 2026-09-14: **P2.3 dùng CSS custom properties + CSS Modules.** `globals.css`
+  là token/reset/typography, mỗi component có CSS Module riêng; không thêm UI
+  library. Inter đóng gói cục bộ, Lucide chỉ làm icon. Header lấy danh sách xe
+  từ Server Component trước khi render và không gọi API khi mở menu; footer là
+  dữ liệu tĩnh. Authority: `web-design-system.md` mục 2 và 3.
 
 Quyết định lâu dài về sản phẩm hoặc kiến trúc thì chuyển lên `docs/decisions/`.
 

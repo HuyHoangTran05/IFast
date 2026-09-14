@@ -1,0 +1,149 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-bottom: 1px solid var(--border);
+  background: color-mix(in srgb, var(--surface) 94%, transparent);
+  backdrop-filter: blur(12px);
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: min(100% - (var(--space-4) * 2), var(--content-max));
+  min-height: calc(var(--space-8) + var(--space-2));
+  margin: 0 auto;
+  gap: var(--space-4);
+}
+
+.brand {
+  color: var(--fg);
+  font-size: 1.25rem;
+  font-weight: 750;
+  letter-spacing: -0.04em;
+}
+
+.brand:hover {
+  text-decoration: none;
+}
+
+.menuButton {
+  display: inline-grid;
+  place-items: center;
+  width: var(--touch-target);
+  height: var(--touch-target);
+  padding: 0;
+  color: var(--fg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  cursor: pointer;
+}
+
+.navigation {
+  display: none;
+}
+
+.navigationOpen {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-4);
+  gap: var(--space-2);
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+  box-shadow: var(--shadow-overlay);
+}
+
+.navigation a,
+.vehicleMenu summary {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+}
+
+.navigation a:hover,
+.vehicleMenu summary:hover {
+  background: var(--bg);
+  text-decoration: none;
+}
+
+.vehicleMenu summary {
+  justify-content: space-between;
+  cursor: pointer;
+  list-style: none;
+}
+
+.vehicleMenu summary::-webkit-details-marker {
+  display: none;
+}
+
+.vehicleMenuPanel {
+  display: grid;
+  padding: var(--space-2) 0 0;
+  gap: var(--space-1);
+}
+
+.vehicleMenuPanel a {
+  color: var(--muted-fg);
+}
+
+.unavailable {
+  padding: var(--space-2) var(--space-3);
+  color: var(--muted-fg);
+}
+
+.primaryCta {
+  justify-content: center;
+  color: var(--brand-fg);
+  background: var(--brand);
+}
+
+.navigation .primaryCta:hover {
+  color: var(--brand-fg);
+  background: var(--brand);
+}
+
+@media (min-width: 768px) {
+  .inner {
+    width: min(100% - (var(--space-6) * 2), var(--content-max));
+  }
+
+  .menuButton {
+    display: none;
+  }
+
+  .navigation {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+  }
+
+  .vehicleMenu {
+    position: relative;
+  }
+
+  .vehicleMenuPanel {
+    position: absolute;
+    top: calc(100% + var(--space-2));
+    left: 0;
+    min-width: calc(var(--space-8) * 3 + var(--space-5) + var(--space-2));
+    padding: var(--space-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--surface);
+    box-shadow: var(--shadow-card);
+  }
+
+  .secondaryLink,
+  .primaryCta {
+    margin-left: var(--space-2);
+  }
+}

@@ -1,0 +1,52 @@
+.state {
+  display: flex;
+  align-items: flex-start;
+  max-width: calc(var(--space-8) * 10);
+  padding: var(--space-5);
+  gap: var(--space-3);
+  color: var(--fg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
+}
+
+.state h2,
+.state p {
+  margin: 0;
+}
+
+.state h2 {
+  font-size: 1.125rem;
+}
+
+.state p {
+  margin-top: var(--space-1);
+  color: var(--muted-fg);
+}
+
+.state button {
+  min-height: var(--touch-target);
+  margin-top: var(--space-4);
+  padding: var(--space-2) var(--space-3);
+  color: var(--brand-fg);
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: var(--brand);
+  cursor: pointer;
+  font-weight: 650;
+}
+
+.error {
+  border-color: var(--danger);
+}
+
+.spinner {
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

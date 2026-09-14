@@ -31,17 +31,30 @@ hard-code màu hay khoảng cách trong component.
 | `--bg` / `--fg` | Nền và chữ mặc định của vùng nội dung, nền sáng |
 | `--bg-inverse` / `--fg-inverse` | Hero và footer, nền tối |
 | `--surface` / `--border` | Thẻ, bảng, đường phân cách |
-| `--brand` / `--brand-fg` | CTA chính: đặt cọc, lái thử |
+| `--brand` / `--brand-fg` | CTA chính: đặt cọc, lái thử; `--brand` tạm chốt là `#0B5FFF` |
 | `--accent` | Nhãn ưu đãi |
 | `--warning` / `--warning-bg` | Cảnh báo dữ liệu mẫu (F-07) |
 | `--danger` | Lỗi biểu mẫu và lỗi tải dữ liệu |
 | `--muted-fg` | Chú thích, ngày hiệu lực, nguồn số liệu |
 
+Giá trị P2 đã chốt:
+
+| Token | Giá trị |
+| --- | --- |
+| `--bg`, `--surface` | `#F7F9FC`, `#FFFFFF` |
+| `--fg`, `--muted-fg`, `--border` | `#111827`, `#52616B`, `#D5DEEB` |
+| `--bg-inverse`, `--fg-inverse` | `#10213F`, `#FFFFFF` |
+| `--brand`, `--brand-fg` | `#0B5FFF`, `#FFFFFF` |
+| `--accent` | `#8A5A00` |
+| `--warning`, `--warning-bg` | `#8A4B00`, `#FFF4D6` |
+| `--danger` | `#B42318` |
+| `--content-max`, `--touch-target` | `1200px`, `44px` |
+
 Ràng buộc: mọi cặp chữ-trên-nền phải đạt tương phản WCAG AA (4.5:1 cho chữ
 thường, 3:1 cho chữ lớn). Cặp nào không đạt thì đổi token, không đổi ngoại lệ.
 
-Chưa chốt giá trị hex cụ thể — phụ thuộc bộ nhận diện IFast, gắn với câu hỏi mở
-Q1 trong [PRD](web-prd.md).
+`--brand` tạm dùng `#0B5FFF`. Các giá trị token P2 ở trên phải được kiểm chứng
+theo ràng buộc tương phản AA.
 
 ### Kiểu chữ
 
@@ -49,7 +62,10 @@ Thang: `12 / 14 / 16 / 20 / 24 / 32 / 40 / 56`. Thân bài 16 px, không nhỏ h
 Con số tiền dùng chữ số đều bề rộng (`font-variant-numeric: tabular-nums`) để
 cột giá không nhảy khi giá đổi.
 
-Font phải có sẵn bộ dấu tiếng Việt đầy đủ. Không tải font từ site tham chiếu.
+Font chính là Inter, phải có đầy đủ dấu tiếng Việt. Không tải font từ site tham
+chiếu.
+
+Bộ icon là Lucide. Không chép hoặc tải icon từ site tham chiếu.
 
 ### Khoảng cách
 
@@ -120,12 +136,13 @@ Theo N-03: WCAG 2.1 AA. Cụ thể trong mọi component:
 - Vùng bấm tối thiểu 44×44 px.
 - Thông báo lỗi và trạng thái tải được đọc bởi trình đọc màn hình.
 
-## 7. Cái chưa chốt
+## 7. Quy ước implementation P2.3
 
-- Giá trị màu, font chữ, và bộ icon — chờ bộ nhận diện IFast (Q1 trong PRD).
-- Có dùng thư viện CSS hay viết CSS Modules thuần — quyết định ở bước 3 của
-  [plan P2](../plans/active/p2-trai-nghiem-ban-xe-tren-web.md), sau khi đã biết
-  số component thực sự cần.
-
-Không chọn thay cho hai mục này trong lúc viết component. Mặc định cấu hình được
-không phải là authority.
+- `globals.css` chỉ chứa token, reset và typography; style theo component dùng
+  CSS Modules.
+- P2 không thêm thư viện UI; component dùng React, CSS Modules và
+  `lucide-react`.
+- Inter được đóng gói cục bộ qua `@fontsource-variable/inter`, không phụ thuộc
+  font hay asset của VinFast.
+- `SiteHeader` nhận danh sách xe đã được lấy ở Server Component; thao tác mở
+  menu không gọi API. `SiteFooter` là dữ liệu tĩnh.
