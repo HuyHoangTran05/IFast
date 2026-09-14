@@ -1,0 +1,11 @@
+* text=auto
+
+# Harness-managed paths are hashed against .harness-core/manifest.json.
+# Pin LF so `harness status` / `harness doctor` do not report false drift
+# when the repository is cloned on Windows.
+AGENTS.md text eol=lf
+CLAUDE.md text eol=lf
+.gitignore text eol=lf
+docs/** text eol=lf
+.agents/** text eol=lf
+.harness-core/** text eol=lf
