@@ -31,6 +31,19 @@ hữu: bạn **chỉ được thêm dòng ở cuối**, không sắp xếp lại
 
 Mọi con số là tính toán xác định. Không ước lượng, không làm tròn tuỳ tiện.
 
+## Môi trường Python
+
+Mọi lệnh Python chạy trong `.venv` của repo, không dùng Python hệ thống:
+
+    python -m venv .venv
+    .venv\Scripts\activate      # Windows
+    pip install -e ".[dev]"
+
+Lý do không phải hình thức: trên máy Windows, `python` và `pip` rất dễ trỏ vào
+hai interpreter khác nhau, nên bạn cài gói một nơi rồi chạy một nơi khác và
+tưởng mình đã kiểm chứng. Venv cũng giữ `ruff` đúng phiên bản đã ghim trong
+`pyproject.toml` mà không đụng vào `ruff` người dùng cài cho việc khác.
+
 ## Migration
 
 Nếu migration conflict với R2b: **xoá migration của mình, pull, generate lại**.

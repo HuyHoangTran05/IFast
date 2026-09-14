@@ -39,6 +39,19 @@ Không đụng `api/catalog/`, `api/pricing/`, `api/promotions/`, `api/inventory
 phiên bản chính sách quyền riêng tư đã hiển thị, và kênh đăng ký. Rút lại đồng
 ý phải có hiệu lực thật trong `notifications/`.
 
+## Môi trường Python
+
+Mọi lệnh Python chạy trong `.venv` của repo, không dùng Python hệ thống:
+
+    python -m venv .venv
+    .venv\Scripts\activate      # Windows
+    pip install -e ".[dev]"
+
+Lý do không phải hình thức: trên máy Windows, `python` và `pip` rất dễ trỏ vào
+hai interpreter khác nhau, nên bạn cài gói một nơi rồi chạy một nơi khác và
+tưởng mình đã kiểm chứng. Venv cũng giữ `ruff` đúng phiên bản đã ghim trong
+`pyproject.toml` mà không đụng vào `ruff` người dùng cài cho việc khác.
+
 ## Contract — bạn là người gác cổng
 
 `contracts/openapi.yaml` là nguồn sự thật duy nhất giữa backend và frontend.

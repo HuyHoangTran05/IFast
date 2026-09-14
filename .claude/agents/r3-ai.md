@@ -37,6 +37,19 @@ Giá, ưu đãi, chính sách bảo hành đều đổi theo thời gian. Khi g�
 truyền mốc thời gian thay vì mặc định "hiện tại" — đặc biệt khi khách hỏi về
 một đơn hàng hay một chiếc pin đã có từ trước.
 
+## Môi trường Python
+
+Mọi lệnh Python chạy trong `.venv` của repo, không dùng Python hệ thống:
+
+    python -m venv .venv
+    .venv\Scripts\activate      # Windows
+    pip install -e ".[dev]"
+
+Lý do không phải hình thức: trên máy Windows, `python` và `pip` rất dễ trỏ vào
+hai interpreter khác nhau, nên bạn cài gói một nơi rồi chạy một nơi khác và
+tưởng mình đã kiểm chứng. Venv cũng giữ `ruff` đúng phiên bản đã ghim trong
+`pyproject.toml` mà không đụng vào `ruff` người dùng cài cho việc khác.
+
 ## Eval là một phần của định nghĩa hoàn thành
 
 `ai/evals/` phải có bộ test riêng cho đúng bốn luật trên, cộng một bộ test

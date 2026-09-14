@@ -3,6 +3,8 @@ scripts/bin/harness
 scripts/bin/harness.exe
 
 # Python
+.venv/
+venv/
 __pycache__/
 *.py[cod]
 .pytest_cache/

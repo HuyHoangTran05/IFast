@@ -4,8 +4,18 @@ Nền tảng web bán ô tô điện.
 
 ## Chạy nhanh
 
+**Luôn làm việc trong virtualenv.** Không cài dependency của dự án vào Python
+hệ thống — trên Windows rất dễ rơi vào cảnh `python` trỏ vào một interpreter
+còn `pip` trỏ vào interpreter khác, và lúc đó bạn cài một nơi rồi chạy một nơi.
+Venv cũng giữ cho `ruff` của dự án đúng phiên bản đã ghim mà không đụng vào
+`ruff` bạn dùng cho việc khác.
+
 ```bash
-# Backend (SQLite, không cần Docker)
+# Backend
+python -m venv .venv
+.venv\Scripts\activate          # Windows
+# source .venv/bin/activate      # macOS / Linux
+
 pip install -e ".[dev]"
 python scripts/seed-dev.py
 uvicorn api.main:app --reload            # http://localhost:8000/docs
@@ -18,6 +28,8 @@ docker compose -f infra/docker-compose.yml up --build
 ```
 
 ## Kiểm chứng
+
+Chạy trong venv đã kích hoạt:
 
 ```bash
 python -m pytest                          # 60 test

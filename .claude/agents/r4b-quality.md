@@ -46,6 +46,19 @@ sai rất tự nhiên:
 - **AI không được bịa**: câu trả lời có số phải khớp với API. Thử hỏi dòng xe
   không tồn tại, tỉnh chưa có bảng phí, ưu đãi đã hết hạn.
 
+## Môi trường Python
+
+Mọi lệnh Python chạy trong `.venv` của repo, không dùng Python hệ thống:
+
+    python -m venv .venv
+    .venv\Scripts\activate      # Windows
+    pip install -e ".[dev]"
+
+Lý do không phải hình thức: trên máy Windows, `python` và `pip` rất dễ trỏ vào
+hai interpreter khác nhau, nên bạn cài gói một nơi rồi chạy một nơi khác và
+tưởng mình đã kiểm chứng. Venv cũng giữ `ruff` đúng phiên bản đã ghim trong
+`pyproject.toml` mà không đụng vào `ruff` người dùng cài cho việc khác.
+
 ## CI
 
 `.github/workflows/` thuộc R4a. Cần thêm bước test thì mở PR cho R4a duyệt.

@@ -19,6 +19,8 @@ Không nằm trong P1: xe máy điện, phụ kiện, hậu mãi, lưu trữ nă
 - Web: Next.js App Router, TypeScript.
 - Tiền: **số nguyên đồng**, không dùng float. Tỉ lệ tính bằng `Decimal`.
 - Contract: sinh từ backend rồi commit, CI chặn nếu lệch. Xem `contracts/README.md`.
+- Môi trường: **bắt buộc dùng `.venv` trong thư mục dự án**. Không cài dependency
+  vào Python hệ thống. Lý do cụ thể ở mục Quyết định bên dưới.
 
 Đổi bất kỳ giả định nào ở trên thì sửa tài liệu này trước khi sửa code.
 
@@ -60,6 +62,13 @@ Không nằm trong P1: xe máy điện, phụ kiện, hậu mãi, lưu trữ nă
   tay type, và đổi contract vẫn là PR riêng.
 - **Tiền dùng số nguyên đồng.** VND không có phần thập phân; dùng float cho
   tiền là lỗi kinh điển.
+- **Bắt buộc dùng virtualenv.** Lần dựng đầu tiên đã cài dependency vào Python
+  hệ thống và dính đúng cái bẫy mà venv sinh ra để ngăn: trên máy Windows này
+  `python` trỏ vào Anaconda còn `pip` trỏ vào bản Python từ Microsoft Store,
+  nên `pip install ruff` cài vào một interpreter trong khi `python -m ruff`
+  chạy interpreter khác — mất một vòng CI mới phát hiện. Việc đó còn nâng
+  `ruff` global của máy từ 0.12.0 lên 0.16.7, tức là sửa máy cá nhân để hợp ý
+  một dự án. Từ nay mọi lệnh Python chạy trong `.venv` của repo.
 
 ## Phục hồi
 
