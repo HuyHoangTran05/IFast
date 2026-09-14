@@ -8,6 +8,7 @@ Khi hành vi đổi, sửa tài liệu này trước khi sửa code.
 Tài liệu liên quan:
 
 - [Sitemap và bản đồ tuyến đường](web-sitemap.md) — có những trang nào.
+- [PRD backend](backend-prd.md) — API mà các trang này gọi tới.
 - [Ngôn ngữ thiết kế](web-design-system.md) — trang trông như thế nào.
 - [Decision 0002](../decisions/0002-ranh-gioi-tham-chieu-giao-dien.md) — được
   tham chiếu site ngoài tới đâu.

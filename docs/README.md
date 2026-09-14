@@ -8,7 +8,9 @@ Start with the smallest authoritative surface.
   completion.
 - `ARCHITECTURE.md`: current product, code, state, update, and ownership
   boundaries.
-- `HARNESS.md`: product principles and installed-core model.
+- [`repository-harness/docs/HARNESS.md`](../repository-harness/docs/HARNESS.md):
+  product principles and installed-core model. Vendored upstream source; not
+  part of the installed core listed in `.harness-core/manifest.json`.
 - `product/`: current product behavior and installation contract.
 - `decisions/`: lasting choices future work must inherit.
 - `plans/`: one durable working-memory document for work that needs it.
@@ -50,3 +52,9 @@ search and agent retrieval return current product authority.
 - [product/web-design-system.md](product/web-design-system.md) — token, component, và luật hiển thị tiền.
 - [plans/active/p2-trai-nghiem-ban-xe-tren-web.md](plans/active/p2-trai-nghiem-ban-xe-tren-web.md) — giai đoạn web, thứ tự thực thi.
 - [prompts/](prompts/) — prompt soạn sẵn cho các đợt làm việc lặp lại.
+- [ARCHITECTURE.md](ARCHITECTURE.md) — thành phần, đường may, bốn bất biến, và những gì chưa có.
+- [SECURITY.md](SECURITY.md) — tài sản, hiện trạng thật, và 12 điều kiện trước production.
+- [product/backend-prd.md](product/backend-prd.md) — PRD backend: B-01..B-76, trạng thái từng domain, câu hỏi mở.
+- [product/api-conventions.md](product/api-conventions.md) — ngữ nghĩa `as_of`, mô hình lỗi, quy ước đặt tên.
+- [product/data-model.md](product/data-model.md) — 13 bảng, ba nhóm, luật migration.
+- [product/glossary.md](product/glossary.md) — đối chiếu thuật ngữ Việt–Anh–tên trong code.

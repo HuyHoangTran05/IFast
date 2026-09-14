@@ -10,10 +10,18 @@ files after actual product domains, such as `overview.md`, `billing.md`,
 
 ## Current Product Contract
 
-No consumer-specific product contract is shipped in this generic directory.
-The upstream `repository-harness` contract lives in the root README, current
-workflow and architecture documents, lasting decisions, implementation, and
-executable tests.
+IFast documents live here:
+
+- [backend-prd.md](backend-prd.md) — hành vi backend, B-01..B-76.
+- [web-prd.md](web-prd.md) — hành vi web, F-01..F-21 và N-01..N-09.
+- [api-conventions.md](api-conventions.md) — ngữ nghĩa tham số và mô hình lỗi.
+- [data-model.md](data-model.md) — 13 bảng và luật migration.
+- [web-sitemap.md](web-sitemap.md) — tuyến đường và nguồn dữ liệu từng trang.
+- [web-design-system.md](web-design-system.md) — token và component.
+- [glossary.md](glossary.md) — đối chiếu thuật ngữ.
+
+Kiến trúc ở [../ARCHITECTURE.md](../ARCHITECTURE.md), bảo mật ở
+[../SECURITY.md](../SECURITY.md).
 
 ## Update Rule
 
