@@ -1,0 +1,37 @@
+# Chạy cả stack bằng một lệnh:
+#     docker compose -f infra/docker-compose.yml up --build
+#
+# Không đặt bí mật thật vào file này. Repo đang public — khoá cổng thanh toán
+# và khoá nhà cung cấp AI lộ ra là mất tiền thật.
+
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: ifast
+      POSTGRES_PASSWORD: ifast_dev_only
+      POSTGRES_DB: ifast
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ifast"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  api:
+    build:
+      context: ..
+      dockerfile: infra/Dockerfile.api
+    environment:
+      IFAST_DATABASE_URL: postgresql+psycopg://ifast:ifast_dev_only@db:5432/ifast
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8000:8000"
+
+volumes:
+  db_data:

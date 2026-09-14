@@ -1,0 +1,51 @@
+# Chủ sở hữu: R4a Platform/DevOps.
+# R4b muốn thêm bước test thì mở PR cho R4a, không sửa trực tiếp.
+
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  api:
+    name: API — test và contract
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Cài dependency
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev]"
+
+      - name: Chạy test
+        run: python -m pytest api ai -q
+
+      - name: Contract phải khớp backend
+        # Sinh lại openapi.yaml và fail nếu khác bản đã commit. Đây là thứ giữ
+        # cho R1 không code theo một contract đã lỗi thời.
+        run: python scripts/generate-contract.py --check
+
+      - name: Lint
+        run: |
+          pip install ruff
+          ruff check api ai alembic scripts
+          ruff format --check api ai alembic scripts
+
+  secrets:
+    name: Không để lọt bí mật
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Quét bí mật trong lịch sử
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
