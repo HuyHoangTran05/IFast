@@ -1,0 +1,56 @@
+# CODEOWNERS — cơ chế hoá ranh giới sở hữu của IFast.
+#
+# GitHub tự gán reviewer theo file bị đụng. Bật branch protection trên `main`
+# với "Require review from Code Owners" thì bảng này mới có hiệu lực thật.
+#
+# ─── ÁNH XẠ NGƯỜI ↔ ROLE — SỬA Ở ĐÂY NẾU PHÂN CÔNG KHÁC ─────────────────────
+#   R1  Frontend                @angWindy
+#   R2a Sản phẩm & giá          @HuyHoangTran05
+#   R2b Khách hàng & giao dịch  @qkhanhbe
+#   R3  AI                      @trunghieunef
+#   R4a Platform / DevOps       @lam3082004
+#   R4b Quality / Release       @hieu7404
+# ────────────────────────────────────────────────────────────────────────────
+
+# Mặc định: chủ repo review những gì chưa có chủ rõ ràng.
+*                           @HuyHoangTran05
+
+# ── R1 — Frontend ───────────────────────────────────────────────────────────
+/web/                       @angWindy
+
+# ── R2a — Sản phẩm & giá ────────────────────────────────────────────────────
+/api/catalog/               @HuyHoangTran05
+/api/pricing/               @HuyHoangTran05
+/api/promotions/            @HuyHoangTran05
+/api/inventory/             @HuyHoangTran05
+/api/battery/               @HuyHoangTran05
+/api/dealers/               @HuyHoangTran05
+
+# ── R2b — Khách hàng & giao dịch ────────────────────────────────────────────
+/api/orders/                @qkhanhbe
+/api/payments/              @qkhanhbe
+/api/testdrive/             @qkhanhbe
+/api/users/                 @qkhanhbe
+/api/auth/                  @qkhanhbe
+/api/notifications/         @qkhanhbe
+
+# Contract là đường may backend ↔ frontend: cần cả R2b và R1 duyệt.
+/contracts/                 @qkhanhbe @angWindy
+
+# ── R3 — AI ─────────────────────────────────────────────────────────────────
+/ai/                        @trunghieunef
+
+# ── R4a — Platform / DevOps ─────────────────────────────────────────────────
+/infra/                     @lam3082004
+/.github/workflows/         @lam3082004
+/repository-harness/        @lam3082004
+
+# ── R4b — Quality / Release ─────────────────────────────────────────────────
+/tests/                     @hieu7404
+
+# ── Chính sách chung: đổi là đổi luật chơi của cả team ──────────────────────
+/AGENTS.md                  @HuyHoangTran05 @lam3082004
+/CLAUDE.md                  @HuyHoangTran05 @lam3082004
+/.claude/agents/            @HuyHoangTran05 @lam3082004
+/.github/CODEOWNERS         @HuyHoangTran05
+/docs/decisions/            @HuyHoangTran05
