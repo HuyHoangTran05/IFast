@@ -25,7 +25,9 @@ dependencies = [
 include = ["api*", "ai*"]
 
 [project.optional-dependencies]
-dev = ["pytest>=8.3", "httpx>=0.28", "ruff>=0.8"]
+# Ruff ghim đúng phiên bản: linter thả lỏng khiến CI đỏ khi có bản mới
+# ra đời dù không ai sửa dòng code nào.
+dev = ["pytest>=8.3", "httpx>=0.28", "ruff==0.16.7"]
 
 [tool.pytest.ini_options]
 testpaths = ["api", "ai"]
@@ -33,3 +35,28 @@ pythonpath = ["."]
 
 [tool.ruff]
 line-length = 100
+
+# Khai báo tập rule tường minh. Dựa vào mặc định của ruff nghĩa là mỗi bản ruff
+# mới có thể đổi luật chơi dưới chân mình — đã ghim phiên bản thì cũng nên ghim
+# luôn rule.
+[tool.ruff.lint]
+select = ["E", "W", "F", "I", "UP", "B", "C4", "SIM", "DTZ", "RUF"]
+ignore = [
+    # Depends(...) trong tham số mặc định là idiom chính thức của FastAPI.
+    "B008",
+    # Độ dài dòng đã do formatter lo.
+    "E501",
+    # Luật ký tự Unicode "dễ nhầm" dành cho nội dung ASCII. Tài liệu và thông
+    # báo lỗi của dự án viết bằng tiếng Việt nên luật này chỉ tạo nhiễu.
+    "RUF001",
+    "RUF002",
+    "RUF003",
+]
+
+[tool.ruff.lint.per-file-ignores]
+# Script và env của alembic phải chèn sys.path trước khi import package.
+"scripts/*.py" = ["E402"]
+"alembic/env.py" = ["E402"]
+"api/tests/conftest.py" = ["E402"]
+# dict(...) kiểu kwargs là dạng dễ đọc nhất cho hàm dựng fixture trong test.
+"api/tests/*.py" = ["C408"]

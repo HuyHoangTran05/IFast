@@ -21,7 +21,7 @@ from sqlalchemy.orm import Mapped, mapped_column
 from api.core.db import Base
 
 
-class BatteryStatus(str, enum.Enum):
+class BatteryStatus(enum.StrEnum):
     LEASED = "leased"
     RETURNED = "returned"
     LOST = "lost"

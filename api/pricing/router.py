@@ -7,6 +7,7 @@ from pydantic import BaseModel
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
+from api.core.clock import today
 from api.core.db import get_session
 from api.pricing.models import (
     ElectricityPriceReference,
@@ -65,7 +66,7 @@ def on_road_quote(
     ),
     session: Session = Depends(get_session),
 ) -> OnRoadQuoteOut:
-    as_of = as_of or date.today()
+    as_of = as_of or today()
     prices = list(session.scalars(select(PriceBookEntry)))
     schedules = list(session.scalars(select(RegistrationFeeSchedule)))
     promotions = list(session.scalars(select(Promotion)))
@@ -122,7 +123,7 @@ def running_cost(
     as_of: date | None = None,
     session: Session = Depends(get_session),
 ) -> RunningCostOut:
-    as_of = as_of or date.today()
+    as_of = as_of or today()
     try:
         result = compare_running_cost(
             monthly_km=monthly_km,

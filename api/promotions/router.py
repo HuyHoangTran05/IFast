@@ -7,6 +7,7 @@ from pydantic import BaseModel
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
+from api.core.clock import today
 from api.core.db import get_session
 from api.core.effective import is_effective_on
 from api.promotions.models import Promotion
@@ -33,7 +34,7 @@ def list_promotions(
     Mặc định là hôm nay, nhưng tra cứu lại một đơn cũ phải truyền đúng ngày của
     đơn — ưu đãi đã hết hạn vẫn phải giải thích được vì sao từng được áp.
     """
-    as_of = as_of or date.today()
+    as_of = as_of or today()
     promos = [p for p in session.scalars(select(Promotion)) if is_effective_on(p, as_of)]
     return [
         PromotionOut(

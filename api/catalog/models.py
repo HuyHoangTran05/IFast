@@ -19,7 +19,7 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from api.core.db import Base
 
 
-class ProductCategory(str, enum.Enum):
+class ProductCategory(enum.StrEnum):
     CAR = "car"
     MOTORBIKE = "motorbike"
 
@@ -36,8 +36,8 @@ class VehicleModel(Base):
     segment: Mapped[str | None] = mapped_column(String(64), nullable=True)
     seats: Mapped[int | None] = mapped_column(Integer, nullable=True)
 
-    trims: Mapped[list["Trim"]] = relationship(back_populates="model")
-    colors: Mapped[list["Color"]] = relationship(back_populates="model")
+    trims: Mapped[list[Trim]] = relationship(back_populates="model")
+    colors: Mapped[list[Color]] = relationship(back_populates="model")
 
 
 class Trim(Base):
@@ -51,7 +51,7 @@ class Trim(Base):
     name: Mapped[str] = mapped_column(String(128))
 
     model: Mapped[VehicleModel] = relationship(back_populates="trims")
-    spec: Mapped["Spec | None"] = relationship(back_populates="trim", uselist=False)
+    spec: Mapped[Spec | None] = relationship(back_populates="trim", uselist=False)
 
     __table_args__ = (UniqueConstraint("model_id", "code"),)
 

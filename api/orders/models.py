@@ -22,7 +22,7 @@ from sqlalchemy.orm import Mapped, mapped_column
 from api.core.db import Base
 
 
-class OrderChannel(str, enum.Enum):
+class OrderChannel(enum.StrEnum):
     """Hai luồng mua khác nhau, không ép chung một máy trạng thái.
 
     Ô tô đi qua đặt cọc rồi hợp đồng rồi giao xe. Xe máy và phụ kiện mua thẳng.
@@ -32,7 +32,7 @@ class OrderChannel(str, enum.Enum):
     DIRECT_PURCHASE = "direct_purchase"
 
 
-class OrderStatus(str, enum.Enum):
+class OrderStatus(enum.StrEnum):
     DRAFT = "draft"
     DEPOSIT_PENDING = "deposit_pending"
     DEPOSIT_PAID = "deposit_paid"

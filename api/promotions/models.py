@@ -17,7 +17,7 @@ from sqlalchemy.orm import Mapped, mapped_column
 from api.core.db import Base
 
 
-class PromotionKind(str, enum.Enum):
+class PromotionKind(enum.StrEnum):
     FIXED_AMOUNT = "fixed_amount"
     PERCENT_OF_PRICE = "percent_of_price"
     BENEFIT_IN_KIND = "benefit_in_kind"

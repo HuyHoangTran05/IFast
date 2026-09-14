@@ -18,7 +18,7 @@ from sqlalchemy.orm import Mapped, mapped_column
 from api.core.db import Base
 
 
-class OwnershipModel(str, enum.Enum):
+class OwnershipModel(enum.StrEnum):
     """Hai mô hình sở hữu pin. Đây là hai biến thể giá, không phải một cờ."""
 
     BATTERY_INCLUDED = "battery_included"
@@ -68,7 +68,7 @@ class RegistrationFeeSchedule(Base):
     effective_to: Mapped[date | None] = mapped_column(Date, nullable=True)
 
 
-class FuelType(str, enum.Enum):
+class FuelType(enum.StrEnum):
     GASOLINE = "gasoline"
     DIESEL = "diesel"
 

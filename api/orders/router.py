@@ -7,6 +7,7 @@ from pydantic import BaseModel
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
+from api.core.clock import today
 from api.core.db import get_session
 from api.orders.models import Order
 from api.orders.service import create_order
@@ -46,7 +47,7 @@ def create(payload: CreateOrderIn, session: Session = Depends(get_session)) -> O
     Sau lời gọi này, đơn không còn phụ thuộc vào bảng giá. Bảng giá đổi ngày
     mai không làm đổi con số trong đơn.
     """
-    as_of = payload.as_of or date.today()
+    as_of = payload.as_of or today()
     try:
         price = resolve_price(
             list(session.scalars(select(PriceBookEntry))),

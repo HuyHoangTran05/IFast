@@ -10,9 +10,10 @@ tính tiền. Mọi phép tính tiền nằm trong `api/`.
 
 from __future__ import annotations
 
+from collections.abc import Callable
 from dataclasses import dataclass
 from datetime import date
-from typing import Any, Callable
+from typing import Any
 
 
 @dataclass(frozen=True)

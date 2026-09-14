@@ -28,7 +28,7 @@ for stream in (sys.stdout, sys.stderr):
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1]))
 
-from api.main import app  # noqa: E402
+from api.main import app
 
 TARGET = pathlib.Path(__file__).resolve().parents[1] / "contracts" / "openapi.yaml"
 

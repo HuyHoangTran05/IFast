@@ -10,15 +10,15 @@ from __future__ import annotations
 
 from logging.config import fileConfig
 
-from alembic import context
 from sqlalchemy import engine_from_config, pool
 
-from api.core.db import Base, database_url
+from alembic import context
 
 # Nạp model để autogenerate nhìn thấy đủ bảng. Thêm domain mới thì thêm một
 # dòng import ở cuối khối này — chỉ thêm, không sắp xếp lại.
 from api.battery import models as _battery  # noqa: F401
 from api.catalog import models as _catalog  # noqa: F401
+from api.core.db import Base, database_url
 from api.orders import models as _orders  # noqa: F401
 from api.pricing import models as _pricing  # noqa: F401
 from api.promotions import models as _promotions  # noqa: F401

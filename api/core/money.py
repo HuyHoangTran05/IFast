@@ -10,7 +10,7 @@ nguyên đồng ở bước cuối cùng.
 
 from __future__ import annotations
 
-from decimal import Decimal, ROUND_HALF_UP
+from decimal import ROUND_HALF_UP, Decimal
 
 Vnd = int
 

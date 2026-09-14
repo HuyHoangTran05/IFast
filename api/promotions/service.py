@@ -35,9 +35,7 @@ def _matches(promo: Promotion, *, trim_id: int, province_code: str, ownership_mo
         return False
     if promo.province_code is not None and promo.province_code != province_code:
         return False
-    if promo.ownership_model is not None and promo.ownership_model != ownership_model:
-        return False
-    return True
+    return promo.ownership_model is None or promo.ownership_model == ownership_model
 
 
 def _discount_of(promo: Promotion, list_price_vnd: Vnd) -> Vnd:

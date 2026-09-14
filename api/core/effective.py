@@ -11,8 +11,9 @@ Hàm nào chỉ biết "hiện tại" thì không diễn đạt được nghiệ
 
 from __future__ import annotations
 
+from collections.abc import Sequence
 from datetime import date
-from typing import Protocol, Sequence, TypeVar
+from typing import Protocol, TypeVar
 
 
 class Effective(Protocol):
@@ -28,9 +29,7 @@ T = TypeVar("T", bound=Effective)
 def is_effective_on(record: Effective, as_of: date) -> bool:
     if as_of < record.effective_from:
         return False
-    if record.effective_to is not None and as_of >= record.effective_to:
-        return False
-    return True
+    return record.effective_to is None or as_of < record.effective_to
 
 
 def effective_on(records: Sequence[T], as_of: date) -> list[T]:
