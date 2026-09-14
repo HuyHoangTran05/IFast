@@ -38,3 +38,10 @@ The former SQLite control plane, protocol v1, story packets, migration evidence,
 and compatibility documentation are preserved by Git history and immutable
 `harness-cli-v*` tags. They are intentionally absent from the current tree so
 search and agent retrieval return current product authority.
+
+## Tài liệu của IFast
+
+- [HANDOFF.md](HANDOFF.md) — bàn giao: chạy gì trước, việc tiếp theo, bẫy đã biết.
+- [RUNBOOK.md](RUNBOOK.md) — chạy, reset trạng thái, gỡ lỗi, dọn dẹp.
+- [plans/active/p1-nen-tang-ban-xe.md](plans/active/p1-nen-tang-ban-xe.md) — tiến độ và quyết định.
+- [decisions/](decisions/) — phân vai và ranh giới sở hữu.

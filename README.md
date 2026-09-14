@@ -2,6 +2,10 @@
 
 Nền tảng web bán ô tô điện.
 
+> **Mới tiếp quản dự án?** Đọc [`docs/HANDOFF.md`](docs/HANDOFF.md) trước.
+> Nó nói bạn cần chạy gì trước, việc tiếp theo là gì, và những cái bẫy đã biết.
+> Cách chạy chi tiết ở [`docs/RUNBOOK.md`](docs/RUNBOOK.md).
+
 ## Chạy nhanh
 
 **Luôn làm việc trong virtualenv.** Không cài dependency của dự án vào Python
