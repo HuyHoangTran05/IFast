@@ -165,7 +165,31 @@ python -m ruff format --check api ai alembic scripts
 cd web && npm run typecheck && npm run build
 ```
 
-Kiểm tra sức khoẻ harness:
+### Kiểm tra sức khoẻ harness
+
+Binary `harness` phụ thuộc nền tảng nên bị gitignore — clone mới **không có
+sẵn** nó. Lấy về theo một trong hai cách:
+
+```bash
+# Cách 1: tải bản phát hành đã ký checksum (khuyến nghị, không cần Rust)
+TAG=harness-v0.1.10
+BASE=https://github.com/hoangnb24/repository-harness/releases/download/$TAG
+curl -fsSL "$BASE/harness-windows-x64.exe"        -o scripts/bin/harness.exe
+curl -fsSL "$BASE/harness-windows-x64.exe.sha256" -o /tmp/h.sha256
+sha256sum scripts/bin/harness.exe          # phải khớp nội dung /tmp/h.sha256
+# macOS/Linux: đổi tên asset thành harness-macos-arm64, harness-linux-x64, ...
+```
+
+```bash
+# Cách 2: build từ source đã vendor trong repo (cần cài Rust)
+cargo build --manifest-path repository-harness/Cargo.toml -p harness --locked
+cp repository-harness/target/debug/harness scripts/bin/harness
+```
+
+Chạy installer từ `repository-harness/` mà **không** có `cargo` sẽ fail — nó
+vào chế độ local source và gọi `cargo build`.
+
+Sau khi có binary:
 
 ```bash
 scripts/bin/harness.exe status --directory .        # Windows

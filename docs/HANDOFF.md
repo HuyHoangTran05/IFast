@@ -101,6 +101,11 @@ ending. **Đừng bỏ dòng đó.** Bỏ đi thì mọi người clone repo s�
 đã được ghim đúng phiên bản trong `pyproject.toml` và tập rule cũng khai báo
 tường minh. Đổi phiên bản thì phải chạy lại `ruff check` toàn repo trước khi push.
 
+**Clone mới không có binary `harness`.** Nó phụ thuộc nền tảng nên bị
+gitignore. Bản thân harness core (AGENTS.md, docs/, .agents/) thì đã nằm sẵn
+trong repo, bạn chỉ cần binary khi muốn chạy `status` / `doctor` / `update`.
+Cách lấy ở `docs/RUNBOOK.md`, mục Kiểm tra sức khoẻ harness.
+
 **`harness status` báo `modified` khác 0 là bình thường.** Harness quản lý
 `docs/README.md` và `docs/decisions/README.md`, cả hai đã được sửa có chủ ý để
 thêm mục lục. Harness hỗ trợ sửa đổi phía người dùng và merge ba chiều khi cập
