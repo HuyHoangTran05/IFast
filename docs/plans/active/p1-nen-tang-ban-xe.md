@@ -97,10 +97,12 @@ Bốn bất biến được cơ chế hoá bằng code chứ không chỉ viết
 Chưa xong, **theo đúng thứ tự nên làm**:
 
 - [ ] **1. Chạy web và API cùng lúc.** Việc đầu tiên của người tiếp quản. Mọi
-      thứ khác đều giả định bước này đã đúng. Xem `docs/RUNBOOK.md`.
-- [ ] **2. Trang chọn tỉnh và trang đặt cọc trong `web/`.** API đã sẵn sàng;
-      đây là phần còn thiếu để hoàn tất luồng tiền đi vào. (R1)
-- [ ] **3. `tests/e2e/` cho luồng đặt cọc.** Cần bước 1 và 2 trước. (R4b)
+      thứ khác đều giả định bước này đã đúng. Xem `docs/RUNBOOK.md`. Đã chuyển sang
+      [plan P2](p2-trai-nghiem-ban-xe-tren-web.md) bước 1.
+- [ ] **2. Trang chọn tỉnh và trang đặt cọc trong `web/`.** Đã chuyển sang
+      [plan P2](p2-trai-nghiem-ban-xe-tren-web.md). (R1)
+- [ ] **3. `tests/e2e/` cho luồng đặt cọc.** Cần bước 1 và 2 trước. Đã chuyển
+      sang [plan P2](p2-trai-nghiem-ban-xe-tren-web.md) bước 7. (R4b)
 - [ ] **4. Chạy `docker compose up` thật và migrate trên PostgreSQL.** Hiện mới
       kiểm chứng trên SQLite. (R4a)
 - [ ] **5. Thay dữ liệu biểu phí mẫu bằng biểu phí pháp lý đã đối chiếu.** (R2a)

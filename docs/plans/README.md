@@ -30,4 +30,5 @@ decision into `docs/decisions/`; keep task-local choices in the plan.
 
 ## Active Plans
 
-No active execution plans are currently indexed.
+- [p1-nen-tang-ban-xe](active/p1-nen-tang-ban-xe.md) — nền tảng bán xe, luồng tiền đi vào. Backend xong ở mức API.
+- [p2-trai-nghiem-ban-xe-tren-web](active/p2-trai-nghiem-ban-xe-tren-web.md) — trải nghiệm web từ trang chủ tới mã đơn đặt cọc.

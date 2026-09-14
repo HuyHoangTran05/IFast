@@ -12,3 +12,4 @@ documents here as real choices are accepted, then index them in this file.
 ## Index
 
 - [0001 Phân vai và ranh giới sở hữu cho 6 người](0001-team-roles-and-ownership-boundaries.md)
+- [0002 Ranh giới tham chiếu giao diện từ site bên ngoài](0002-ranh-gioi-tham-chieu-giao-dien.md)

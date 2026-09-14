@@ -45,3 +45,8 @@ search and agent retrieval return current product authority.
 - [RUNBOOK.md](RUNBOOK.md) — chạy, reset trạng thái, gỡ lỗi, dọn dẹp.
 - [plans/active/p1-nen-tang-ban-xe.md](plans/active/p1-nen-tang-ban-xe.md) — tiến độ và quyết định.
 - [decisions/](decisions/) — phân vai và ranh giới sở hữu.
+- [product/web-prd.md](product/web-prd.md) — PRD trải nghiệm web bán xe: yêu cầu chức năng, phi chức năng, câu hỏi mở.
+- [product/web-sitemap.md](product/web-sitemap.md) — danh mục tuyến đường của `web/` và nguồn dữ liệu từng trang.
+- [product/web-design-system.md](product/web-design-system.md) — token, component, và luật hiển thị tiền.
+- [plans/active/p2-trai-nghiem-ban-xe-tren-web.md](plans/active/p2-trai-nghiem-ban-xe-tren-web.md) — giai đoạn web, thứ tự thực thi.
+- [prompts/](prompts/) — prompt soạn sẵn cho các đợt làm việc lặp lại.
