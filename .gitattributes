@@ -1,15 +1,15 @@
 * text=auto
 
-# Harness-managed paths are hashed against .harness-core/manifest.json.
-# Pin LF so `harness status` / `harness doctor` do not report false drift
-# when the repository is cloned on Windows.
-AGENTS.md text eol=lf
-CLAUDE.md text eol=lf
-.gitignore text eol=lf
-docs/** text eol=lf
-.agents/** text eol=lf
-.harness-core/** text eol=lf
+# Harness-managed paths: harness hash BYTE THÔ và đối chiếu .harness-core/base
+# với upstream_sha256 trong manifest.json. Bất kỳ chuyển đổi line ending nào
+# của git cũng làm `harness status` chết với "base hash mismatch".
+# Vì vậy các đường dẫn này phải đi qua git KHÔNG chuyển đổi gì cả.
+AGENTS.md        -text
+CLAUDE.md        -text
+docs/**          -text
+.agents/**       -text
+.harness-core/** -text
 
-# Vendored upstream source: keep bytes identical to upstream on every platform.
-# repository-harness/.gitattributes still pins *.ps1 to CRLF.
+# Vendored upstream source: giữ bytes giống hệt upstream trên mọi nền tảng.
+# repository-harness/.gitattributes vẫn pin *.ps1 sang CRLF.
 repository-harness/** text eol=lf
