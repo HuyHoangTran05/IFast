@@ -1,3 +1,7 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "ifast-api"
 version = "0.1.0"
@@ -13,6 +17,12 @@ dependencies = [
     "psycopg[binary]>=3.2",
     "pyyaml>=6.0",
 ]
+
+# Repo này là monorepo: web/, infra/, contracts/, alembic/ nằm cùng cấp với mã
+# Python. Không khai báo tường minh thì setuptools sẽ coi tất cả là package và
+# từ chối build. Chỉ đóng gói api/ và ai/.
+[tool.setuptools.packages.find]
+include = ["api*", "ai*"]
 
 [project.optional-dependencies]
 dev = ["pytest>=8.3", "httpx>=0.28", "ruff>=0.8"]
